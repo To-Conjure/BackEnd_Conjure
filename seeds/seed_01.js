@@ -9,4 +9,7 @@ exports.seed = async function (knex) {
   await knex('users').insert([
     { username: 'evan', email: 'evan123@gmail.com', password: '1111' },
   ]);
+  await knex('user_info').insert([
+    { user_id: 1 },
+  ]);
 };
