@@ -1,0 +1,27 @@
+{
+  "name": "backend_conjure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/To-Conjure/BackEnd_Conjure.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/To-Conjure/BackEnd_Conjure/issues"
+  },
+  "homepage": "https://github.com/To-Conjure/BackEnd_Conjure#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "knex": "^2.4.2",
+    "nodemon": "^2.0.20",
+    "pg": "^8.9.0",
+    "save-dev": "^0.0.1-security"
+  }
+}
