@@ -3,13 +3,11 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-    return knex.schema.createTable('user_message', table => {
-        table.increments('user_message_id').primary();
+    return knex.schema.createTable('user_like', table => {
+        table.increments('like_id').primary();
         table.integer('user_id').notNullable;
         table.foreign('user_id').references('user_id').inTable('users');
-        table.string('message').notNullable;
-        table.timestamp("message_date").notNullable().defaultTo(knex.fn.now());
-    
+        table.integer('likes').notNullable().defaultTo(0)
     })
 };
 /**
@@ -17,5 +15,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-    return knex.schema.dropTable('user_message');
+    return knex.schema.dropTable('user_like');
 };
