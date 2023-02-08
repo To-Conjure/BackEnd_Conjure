@@ -2,7 +2,9 @@ const express = require("express")
 const cors = require("cors")
 const app = express()
 const PORT = process.env.PORT || 8000 
+
 const userRouter = require("./route/userRoute.js")
+const userDataRouter = require("./route/userDataRoute.js")
 
 app.use(cors());
 app.use(express.json());
@@ -11,5 +13,5 @@ app.use("/usersData", userDataRouter);
 
 
 app.listen(PORT, function(){
-  console.log("Server started on port:", PORT);
+  console.log(`Server listening on http://localhost:${PORT}`);
 })
