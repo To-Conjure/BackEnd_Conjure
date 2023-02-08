@@ -5,6 +5,8 @@
 exports.up = function (knex) {
     return knex.schema.createTable('user_like', table => {
         table.increments('like_id').primary();
+        table.integer('user_message_id').notNullable;
+        table.foreign('user_message_id').references('user_message_id').inTable('user_message');
         table.integer('user_id').notNullable;
         table.foreign('user_id').references('user_id').inTable('users');
         table.integer('likes').notNullable().defaultTo(0)

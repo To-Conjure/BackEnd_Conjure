@@ -8,7 +8,6 @@ exports.up = function (knex) {
         table.integer('user_id').notNullable;
         table.foreign('user_id').references('user_id').inTable('users');
         table.string('message').notNullable;
-        table.integer('like_id').notNullable;
         table.timestamp("message_date").notNullable().defaultTo(knex.fn.now());
     
     })
