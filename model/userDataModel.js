@@ -1,16 +1,16 @@
 const { pool } = require("../db.js");
 
 class UserData {
-  static async getSingleUsersData() {
-    const db = "SELECT * FROM users";
-    const dbInfo = await pool.query(db);
-    return dbInfo.rows;
+  static async getSingleUserDataFromDB(id) {
+    const db = "SELECT * FROM user_info WHERE user_info_id = $1";
+    const query = await pool.query(db, [id]);
+    return query.rows;
   }
 
-  static async getAllUsersData(id) {
-      const db = "SELECT * FROM users WHERE id = $1";
-      const query = await pool.query(db, [id]);
-      return query.rows;
+  static async getAllUsersDataFromDB() {
+      const db = "SELECT * FROM user_info";
+      const dbInfo = await pool.query(db);
+      return dbInfo.rows;
   }
 }
 
