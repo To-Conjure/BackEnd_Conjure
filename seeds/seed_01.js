@@ -2,6 +2,10 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
  */
+
+const bcrypt = require('bcrypt');
+const salt = 10;
+
 exports.seed = async function (knex) {
   await knex('users').del()
   await knex('user_info').del()
@@ -14,16 +18,16 @@ exports.seed = async function (knex) {
   await knex.raw('TRUNCATE TABLE user_like RESTART IDENTITY CASCADE')
 
   await knex('users').insert([
-    { username: 'evan', email: 'evan123@gmail.com', password: '1111' },
-    { username: 'aldair', email: 'aldair@gmail.com', password: '2222' },
-    { username: 'cris', email: 'cris@gmail.com', password: '333' },
-    { username: 'chris', email: 'chris@gmail.com', password: '444' },
-    { username: 'cece', email: 'cece@gmail.com', password: '5555' },
-    { username: 'eman', email: 'eman@gmail.com', password: '666' },
-    { username: 'aaron', email: 'aaron@gmail.com', password: '777' },
-    { username: 'jowel', email: 'jowel@gmail.com', password: '8888' },
-    { username: 'ann', email: 'ann@gmail.com', password: '99999' },
-    { username: 'caston', email: 'caston@gmail.com', password: '111100' },
+    { username: 'evan', email: 'evan123@gmail.com', password: bcrypt.hashSync('1111', salt)},
+    { username: 'aldair', email: 'aldair@gmail.com', password: bcrypt.hashSync('2222', salt)},
+    { username: 'cris', email: 'cris@gmail.com', password: bcrypt.hashSync('333', salt) },
+    { username: 'chris', email: 'chris@gmail.com', password: bcrypt.hashSync('4444', salt) },
+    { username: 'cece', email: 'cece@gmail.com', password: bcrypt.hashSync('555', salt) },
+    { username: 'eman', email: 'eman@gmail.com', password: bcrypt.hashSync('666', salt) },
+    { username: 'aaron', email: 'aaron@gmail.com', password: bcrypt.hashSync('777', salt) },
+    { username: 'jowel', email: 'jowel@gmail.com', password: bcrypt.hashSync('888', salt) },
+    { username: 'ann', email: 'ann@gmail.com', password: bcrypt.hashSync('999', salt) },
+    { username: 'caston', email: 'caston@gmail.com', password: bcrypt.hashSync('111100', salt) },
   ]);
   await knex('user_info').insert([
     { user_id: 1 },
