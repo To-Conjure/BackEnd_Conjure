@@ -30,14 +30,15 @@ const getAllUsersInfo = async (req, res) => {
     : res.status(404).send("Error");
 };
 
-const registerUser = async (req, res) => {
-  const {username, email, password} = req.body
-      try{
-        const signUp = await Users.registerUserToDB(username,email,password);
-        return res.status(200).send(signUp)
-      }catch(e){
-        return res.status(400).send(e)
-      }
+async function registerUser (req, res) {
+  const {username, bio, password} = req.body 
+  const hashedPassword = bcrypt.hashSync(password, 10)
+  try{
+    const createdUser = await UserModel.registerUserToDB(username, bio, hashedPassword)
+    return res.status(200).send(createdUser)
+  }catch(e){
+    res.status(400).send(e)
+  }
 };
 
 

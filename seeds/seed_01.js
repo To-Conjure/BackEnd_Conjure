@@ -30,16 +30,16 @@ exports.seed = async function (knex) {
     { username: 'caston', email: 'caston@gmail.com', password: bcrypt.hashSync('111100', salt) },
   ]);
   await knex('user_info').insert([
-    { user_id: 1 },
-    { user_id: 2 },
-    { user_id: 3 },
-    { user_id: 4 },
-    { user_id: 5 },
-    { user_id: 6 },
-    { user_id: 7 },
-    { user_id: 8 },
-    { user_id: 9},
-    { user_id: 10},
+    { user_id: 1, kills: 4, deaths: 0, wins: 2, loss: 0,games: 2},
+    { user_id: 2, kills: 0, deaths: 3, wins: 0, loss: 3,games: 3 },
+    { user_id: 3, kills: 1, deaths: 2, wins: 0, loss: 2,games: 2 },
+    { user_id: 4, kills: 0, deaths: 1, wins: 0, loss: 1,games: 1 },
+    { user_id: 5, kills: 2, deaths: 1, wins: 1, loss: 1,games: 1 },
+    { user_id: 6, kills: 5, deaths: 1, wins: 2, loss: 1,games: 3 },
+    { user_id: 7, kills: 1, deaths: 1, wins: 0, loss: 1,games: 1},
+    { user_id: 8, kills: 1, deaths: 1, wins: 0, loss: 1,games: 1 },
+    { user_id: 9, kills: 5, deaths: 3, wins: 2, loss: 3,games: 2},
+    { user_id: 10, kills: 5, deaths: 3, wins: 0, loss: 3,games: 3},
   ]);
   await knex('user_message').insert([
     { user_id: 1, message: 'welcome to conjure'},

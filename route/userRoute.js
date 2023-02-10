@@ -6,7 +6,7 @@ router.get("/", userController.getAllUsers)
 router.get("/:id", userController.getSingleUser)
 router.get("/stat", userController.getAllUsersInfo)
 router.get("/stat/:id", userController.getSingleUserInfo)
-
+router.post("/login", userController.registerUser)
 router.post("/register", userController.registerUser)
 
 
