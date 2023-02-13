@@ -8,8 +8,11 @@ const userDataRouter = require("./route/userDataRoute.js")
 
 app.use(cors());
 app.use(express.json());
+
 app.use("/users", userRouter);
 app.use("/usersData", userDataRouter);
+
+
 
 
 app.listen(PORT, function(){
