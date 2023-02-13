@@ -44,10 +44,24 @@ const registerUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  const {username, password} = req.body 
+  try{
+    const foundUser = await Users.loginUserToDB(username)
+    console.log(username,password)
+    if(foundUser) {
+      return res.status(200).send(foundUser)
+    }
+    } catch(e){
+      res.status(401).send(e)
+    }
+};
+
 module.exports = {
   getAllUsers,
   getSingleUser,
   getSingleUserInfo,
   getAllUsersInfo,
   registerUser,
+  loginUser,
 };
