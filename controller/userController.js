@@ -1,6 +1,7 @@
 const Users = require("../model/userModel");
 const bcrypt = require('bcrypt');
-const salt = 10;
+const jwt = require("jsonwebtoken")
+const salt = 5;
 
 const getSingleUser = async (req, res) => {
   const id = req.params.id;
@@ -35,10 +36,11 @@ const getAllUsers = async (req, res) => {
 
 const registerUser = async (req, res) => {
   const {username, email, password} = req.body 
-  const hashedPassword = bcrypt.hashSync(password, salt)
+  const hashedPassword = bcrypt.hash(password, salt)
   try{
     const createdUser = await Users.registerUserToDB(username, email, hashedPassword)
-    return res.status(200).send(createdUser)
+    const token = await jwt.sign({username: username}, process.env.REACT_APP_AUTH_KEY)
+    return res.status(200).send({createdUser, token})
   }catch(e){
     res.status(400).send(e)
   }

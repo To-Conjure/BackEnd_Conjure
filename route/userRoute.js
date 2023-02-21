@@ -6,6 +6,7 @@ router.get("/", userController.getAllUsers)
 router.get("/stat", userController.getAllUsersInfo)
 router.post("/login", userController.loginUser)
 router.post("/register", userController.registerUser)
+
 router.get("/:id", userController.getSingleUser)
 
 router.all("*", (req, res) => {
