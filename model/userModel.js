@@ -1,4 +1,4 @@
-const { pool } = require("../db.js");
+const  pool  = require("../db.js");
 
 class User {
   static async getSingleUserFromDB(id) {
@@ -29,7 +29,7 @@ static async getAllUsersInfoFromDB() {
 
   static async registerUserToDB(...args) { 
     const data = [...args]
-    const db = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING user_id, email, password;"
+    const db = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING username, email, password;"
     const dbInfo = await pool.query(db, data);
     return dbInfo.rows[0];
   }
