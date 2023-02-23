@@ -33,17 +33,19 @@ static async getAllUsersInfoFromDB() {
 
   static async registerUserToDB(...args) { 
     const data = [...args]
-    const db = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING username, email, password;"
+    console.log(data)
+    const db = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING username, email, password, user_id;"
     const dbInfo = await pool.query(db, data);
     return dbInfo.rows[0];
   }
 
-  static async loginUser(username, password){
+  static async loginUserToDB(username){
+    
     const query = await pool.query(
-      "SELECT * FROM users WHERE username = $1 AND password = $2", 
-      [username, password]
+      "SELECT * FROM users WHERE username = $1", 
+      [username]
     )
-    console.log(query.rows)
+    // console.log(query.rows)
     return query.rows[0]
   }
 }
