@@ -40,8 +40,11 @@ const getAllUsers = async (req, res) => {
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, salt);
+  const foundUser = await Users.loginUserToDB(username);
+
+  if(!foundUser){
   try {
+    const hashedPassword = bcrypt.hashSync(password, salt);
     const createdUser = await Users.registerUserToDB(
       username,
       email,
@@ -55,6 +58,9 @@ const registerUser = async (req, res) => {
   } catch (e) {
     res.status(400).send(e);
   }
+} else {
+  res.status(401).send({message: "invalid"});
+}
 };
 
 const loginUser = async (req, res) => {
@@ -64,7 +70,7 @@ const loginUser = async (req, res) => {
     if (foundUser) {
       const pass = bcrypt.compareSync(password, foundUser.password)
       if(pass){
-        foundUser.message = "yes"
+        foundUser.message = "valid"
         return res.status(200).send(foundUser);
       } else{
         return res.status(200).send({ message: "Invalid password" });
