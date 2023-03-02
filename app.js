@@ -12,7 +12,9 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/usersData", userDataRouter);
 
-
+app.get("/", async(req,res)=>{
+  res.status(200).send("Hello world")
+})
 
 
 app.listen(PORT, function(){
